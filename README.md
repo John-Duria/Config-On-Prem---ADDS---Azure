@@ -19,7 +19,7 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 <h2>Task</h2>
 
-- Task 1
+- Task 1.Creating a Resource Group and Deploying Windows 10 and Windows Server VMs.
 - Task 2
 - Task 3
 - Task 4
