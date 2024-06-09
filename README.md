@@ -38,7 +38,7 @@ Step 1: Create the Domain Controller VM (DC-1)
 
     Navigate to Virtual Machines:
         Click on "Virtual machines" in the left-hand menu.
-
+    
     Create New Virtual Machine for Domain Controller:
         Click "+ Create" to create a new virtual machine.
         Configure the following settings:
