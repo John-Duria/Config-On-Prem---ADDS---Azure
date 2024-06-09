@@ -40,7 +40,7 @@ Step 1: Create the Domain Controller VM (DC-1)
         Click on "Virtual machines" in the left-hand menu.
 
     Create New Virtual Machine for Domain Controller:
-        Click "+ Add" to create a new virtual machine.
+        Click "+ Create" to create a new virtual machine.
         Configure the following settings:
             Subscription: Choose your Azure subscription.
             Resource Group: Create a new resource group (e.g., MyResourceGroup).
@@ -74,8 +74,9 @@ Step 3: Create the Client VM (Client-1)
         Click on "Virtual machines" in the left-hand menu.
 
     Add New Virtual Machine for Client:
-        Click "+ Add" to create a new virtual machine.
-        Use the same settings as for the Domain Controller VM, but choose the same Resource Group (MyResourceGroup) and Virtual Network (VNet) that was created earlier.
+        Click "+ Create" to create a new virtual machine.
+        Use the same settings as for the Domain Controller VM, but choose the same Resource Group 
+        (MyResourceGroup) and Virtual Network (VNet) that was created earlier.
         Name the VM as Client-1.
         Follow the same steps to configure size, administrator account, networking, and other settings.
 
@@ -120,7 +121,8 @@ Step 7: Verify Ping Success from Client-1 to DC-1
 
     Check Perpetual Ping on Client-1:
         Switch back to the Command Prompt on Client-1 where the perpetual ping to DC-1 was initiated.
-        Observe the output of the ping command. You should start seeing successful ping replies from DC-1's private IP address.
+        Observe the output of the ping command. You should start seeing successful ping replies from 
+        DC-1's private IP address.
 
     Verification of ICMPv4 Traffic:
         Return to the Remote Desktop session on DC-1.
@@ -131,7 +133,8 @@ Step 7: Verify Ping Success from Client-1 to DC-1
 
 ping localhost
 
-If ICMPv4 is enabled successfully, you should see replies indicating that the ping traffic is now allowed through the Windows Firewall.
+If ICMPv4 is enabled successfully, you should see replies indicating that the ping traffic is now allowed 
+through the Windows Firewall.
 
 ![image](https://github.com/John-Duria/Config-On-Prem---ADDS---Azure/assets/168502429/8c00b055-47cd-466e-87e7-dd739c6ca36e)
 
@@ -148,7 +151,8 @@ Step 8: Install Active Directory Domain Services on DC-1
         Open Server Manager:
             Click on "Manage" and select "Add Roles and Features".
         Click "Next" until you reach the "Server Roles" section.
-        Select "Active Directory Domain Services" and proceed with the installation by accepting the default settings.
+        Select "Active Directory Domain Services" and proceed with the installation by accepting the 
+        default settings.
         Click "Install" to start the installation process.
         Once installation completes, click "Close".
 
@@ -182,7 +186,8 @@ Step 10: Log in to DC-1 as User labuser from mydomain.com
 
     Verify Domain User Login:
         Once logged in, verify that you are logged in as labuser from the domain mydomain.com.
-        Open Server Manager or Active Directory Users and Computers to confirm the domain configuration and user account presence.
+        Open Server Manager or Active Directory Users and Computers to confirm the domain configuration 
+        and user account presence.
 
 Task 4. How to create an Admin and Normal User Account in AD.
 
@@ -238,7 +243,8 @@ Step 16: Use "jane_admin" as the Admin Account from now on
 
     Administer as "jane_admin":
         After logging in as jane_admin:
-            Open administrative tools, such as Server Manager or Active Directory Users and Computers, to perform administrative tasks using the jane_admin account within the mydomain.com domain.
+            Open administrative tools, such as Server Manager or Active Directory Users and Computers, 
+            to perform administrative tasks using the jane_admin account within the mydomain.com domain.
 
 ![image](https://github.com/John-Duria/Config-On-Prem---ADDS---Azure/assets/168502429/0a77fb15-1567-4425-9e0c-3e6e9c207925)
 
@@ -268,7 +274,8 @@ Step 19: Join Client-1 to the Domain (mydomain.com)
 
     Login to Client-1 as Local Admin (labuser) and Join Domain:
         After Client-1 has restarted:
-            Open Remote Desktop Connection and log in as the original local admin (labuser) using the local credentials.
+            Open Remote Desktop Connection and log in as the original local admin (labuser) using the 
+            local credentials.
             Press Win + R, type sysdm.cpl, and press Enter to open System Properties.
             Go to the "Computer Name" tab and click "Change".
             Select "Domain", enter mydomain.com in the domain field, and click "OK".
@@ -317,15 +324,20 @@ Step 24: Login to Client-1 as a Normal, Non-Administrative User
 
     Log into Client-1 as a Non-Admin User:
         Logout of the current session (jane_admin).
-        Login to Client-1 using Remote Desktop (RDP) as a normal, non-administrative user from the mydomain.com domain (e.g., mydomain.com\username).
+        Login to Client-1 using Remote Desktop (RDP) as a normal, non-administrative user from the 
+        mydomain.com domain (e.g., mydomain.com\username).
 
 Step 25: Consider Using Group Policy for Bulk Changes
 
     Implement Group Policy for Widespread Changes:
-        While this tutorial demonstrates manual configuration for Client-1, for larger environments, use Group Policy to manage Remote Desktop settings across multiple systems:
+        While this tutorial demonstrates manual configuration for Client-1, for larger environments, use 
+        Group Policy to manage Remote Desktop settings across multiple systems:
             Open Group Policy Management Console (gpmc.msc) on the Domain Controller (DC-1).
-            Create or edit a Group Policy Object (GPO) linked to the appropriate Organizational Unit (OU) containing client computers (Client-1 in this case).
-            Configure Remote Desktop settings (e.g., allowing Domain Users to access Remote Desktop) within the GPO under Computer Configuration > Policies > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host.
+            Create or edit a Group Policy Object (GPO) linked to the appropriate Organizational Unit (OU) 
+            containing client computers (Client-1 in this case).
+            Configure Remote Desktop settings (e.g., allowing Domain Users to access Remote Desktop) within 
+            the GPO under Computer Configuration > Policies > Administrative Templates > Windows Components > 
+            Remote Desktop Services > Remote Desktop Session Host.
             Apply the GPO to the relevant OU to ensure consistent policy enforcement across multiple systems.
 
 ![image](https://github.com/John-Duria/Config-On-Prem---ADDS---Azure/assets/168502429/aea03024-7aad-4d2d-9402-52b7dea1cf6e)
